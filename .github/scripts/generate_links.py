@@ -5,16 +5,24 @@ SOURCE = "https://raw.githubusercontent.com/Alvin9999/new-pac/master/fetch_ips.t
 
 def run():
     try:
-        # 增加超时和重试逻辑
         resp = requests.get(SOURCE, timeout=20)
-        # 强制只抓取美国(US)节点
-        nodes = [f"vless://{UUID}@{l.strip()}:443?encryption=none&security=tls&sni=peer.com&fp=chrome&type=ws&host=peer.com#US_{l.split(':')[0]}" 
-                 for l in resp.text.splitlines() if "US" in l]
+        lines = resp.text.splitlines()
+        nodes = []
         
-        # 强制写在根目录
+        for l in lines:
+            if ":" in l:
+                # 不再筛选 US，先把所有节点抓下来保底
+                ip = l.strip()
+                link = f"vless://{UUID}@{ip}:443?encryption=none&security=tls&sni=peer.com&fp=chrome&type=ws&host=peer.com#Node_{ip.split(':')[0]}"
+                nodes.append(link)
+        
+        if not nodes:
+            # 如果源文件没数据，造一个保底的
+            nodes.append(f"vless://{UUID}@1.1.1.1:443?encryption=none&security=tls&sni=peer.com&fp=chrome&type=ws&host=peer.com#Check_Source_Error")
+
         with open("sub_link.txt", "w", encoding="utf-8") as f:
             f.write("\n".join(nodes))
-        print(f"Success: {len(nodes)} nodes found")
+        print(f"Success: {len(nodes)} nodes")
     except Exception as e:
         print(f"Error: {e}")
 
