@@ -1,30 +1,33 @@
+import requests
 import base64
 
-# 你的专属配置
-UUID = "fb257ee7-386f-4eb6-95c0-6ba00872a588"
+# 使用一个目前活跃的高速节点源（这个源包含大量 US 节点）
+SOURCE_URL = "https://raw.githubusercontent.com/freefq/free/master/v2"
 
 def run():
-    # 我们直接生成一组备用的美国优选 IP 节点，确保你一定能刷出内容
-    # 这些是常用的优选段，配合你的 UUID 即可使用
-    ips = [
-        "104.16.1.1", "104.17.2.2", "104.18.3.3", "104.19.4.4", 
-        "172.67.1.1", "104.21.5.5", "162.159.3.3", "104.16.88.88"
-    ]
-    
-    nodes = []
-    for ip in ips:
-        # 构造标准的 VLESS 链接
-        link = f"vless://{UUID}@{ip}:443?encryption=none&security=tls&sni=peer.com&fp=chrome&type=ws&host=peer.com#US_Direct_{ip}"
-        nodes.append(link)
-    
-    # 将这些节点合并
-    content = "\n".join(nodes)
-    
-    # 写入文件
-    with open("sub_link.txt", "w", encoding="utf-8") as f:
-        f.write(content)
-    
-    print(f"成功生成了 {len(nodes)} 个硬编码节点")
+    try:
+        # 1. 抓取订阅数据
+        resp = requests.get(SOURCE_URL, timeout=15)
+        # 2. 解码 Base64 内容
+        decoded_text = base64.b64decode(resp.text).decode('utf-8')
+        all_nodes = decoded_text.splitlines()
+        
+        # 3. 筛选出带 "美国" 或 "US" 的高速节点
+        us_nodes = []
+        for node in all_nodes:
+            if "US" in node or "美国" in node:
+                us_nodes.append(node)
+        
+        # 如果没抓到美国节点，就拿前20个保底
+        final_nodes = us_nodes if us_nodes else all_nodes[:20]
+        
+        # 4. 写入文件
+        with open("sub_link.txt", "w", encoding="utf-8") as f:
+            f.write("\n".join(final_nodes))
+        print(f"成功更新了 {len(final_nodes)} 个真实节点")
+        
+    except Exception as e:
+        print(f"抓取失败: {e}")
 
 if __name__ == "__main__":
     run()
