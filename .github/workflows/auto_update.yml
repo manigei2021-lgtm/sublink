@@ -1,7 +1,32 @@
+name: Auto Update Nodes
+on:
+  workflow_dispatch: 
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run Generator
+        run: python .github/scripts/generate_links.py
+
       - name: Commit and Push
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add sub_link.txt
-          git commit -m "Force update sub_link.txt" || exit 0
+          git commit -m "Update nodes" || exit 0
           git push origin main
+
