@@ -1,4 +1,4 @@
-vless://fb257ee7-386f-4eb6-95c0-6ba00872a588@104.16.80.1:443?encryption=none&security=tls&sni=Newtrance.ccwu.cc&fp=chrome&type=grpc&serviceName=grpc&host=Newtrance.ccwu.cc#🚀Final_4K_104.16.80.1
-vless://fb257ee7-386f-4eb6-95c0-6ba00872a588@104.17.210.2:443?encryption=none&security=tls&sni=Newtrance.ccwu.cc&fp=chrome&type=grpc&serviceName=grpc&host=Newtrance.ccwu.cc#🚀Final_4K_104.17.210.2
-vless://fb257ee7-386f-4eb6-95c0-6ba00872a588@104.16.249.88:443?encryption=none&security=tls&sni=Newtrance.ccwu.cc&fp=chrome&type=grpc&serviceName=grpc&host=Newtrance.ccwu.cc#🚀Final_4K_104.16.249.88
-vless://fb257ee7-386f-4eb6-95c0-6ba00872a588@104.21.90.5:443?encryption=none&security=tls&sni=Newtrance.ccwu.cc&fp=chrome&type=grpc&serviceName=grpc&host=Newtrance.ccwu.cc#🚀Final_4K_104.21.90.5
+vless://fb257ee7-386f-4eb6-95c0-6ba00872a588@104.17.210.2:443?encryption=none&security=tls&sni=Newtrance.ccwu.cc&fp=chrome&type=ws&host=Newtrance.ccwu.cc&path=%2F%3Fed%3D2048#🚀Final_4K_104.17.210.2
+vless://fb257ee7-386f-4eb6-95c0-6ba00872a588@104.16.249.88:443?encryption=none&security=tls&sni=Newtrance.ccwu.cc&fp=chrome&type=ws&host=Newtrance.ccwu.cc&path=%2F%3Fed%3D2048#🚀Final_4K_104.16.249.88
+vless://fb257ee7-386f-4eb6-95c0-6ba00872a588@104.21.90.5:443?encryption=none&security=tls&sni=Newtrance.ccwu.cc&fp=chrome&type=ws&host=Newtrance.ccwu.cc&path=%2F%3Fed%3D2048#🚀Final_4K_104.21.90.5
+vless://fb257ee7-386f-4eb6-95c0-6ba00872a588@172.67.74.1:443?encryption=none&security=tls&sni=Newtrance.ccwu.cc&fp=chrome&type=ws&host=Newtrance.ccwu.cc&path=%2F%3Fed%3D2048#🚀Final_4K_172.67.74.1
